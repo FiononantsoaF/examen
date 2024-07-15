@@ -53,12 +53,3 @@ INSERT INTO finals4_employe (nom, mdp)
 			 ('Eva', 'securepassword'), 
 			 ('David', 'p@ssw0rd');
 
-
-SELECT * , CAST(TIMEDIFF(fotoana_m ,fotoana_v)-DATEDIFF(fotoana_m, fotoana_v)*140000 AS TIME) as diff FROM (
-    SELECT
-	 	  view_all_sortie.slot as slot,
-        CONCAT(view_all_sortie.daty, ' ', view_all_sortie.fotoana) AS fotoana_v, 
-        CONCAT(view_all_entree.daty, ' ', view_all_entree.fotoana) AS fotoana_m
-    FROM view_all_sortie 
-    LEFT JOIN view_all_entree ON view_all_sortie.slot = view_all_entree.slot
-) AS tab where fotoana_v < fotoana_m;
