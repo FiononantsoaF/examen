@@ -1,6 +1,13 @@
 drop database db_infop16a_ETU002740 ;
 create database db_infop16a_ETU002740 ;
 use db_infop16a_ETU002740 ;
+
+create table  reference(
+	date_reference date
+)engine=innodb;
+
+insert into reference values ("2024-07-13")
+
 create table finals4_slots(
 	id int primary key auto_increment,
 	nom char(1) not null
@@ -22,7 +29,7 @@ create table finals4_services(
 	id int primary key auto_increment,
 	nom varchar(20) not null,
 	prix int(10) not null,
-	duree int 
+	duree time 
 ) engine = innodb;
 
 create table finals4_demande_rendez_vous(
