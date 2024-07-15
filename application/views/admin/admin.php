@@ -17,7 +17,7 @@
 
                 <div class="form_login">
                     <div class="left">
-                        <form action="#" method="get">
+                    <?php echo form_open('Admin_Controller/authentification'); ?>
                             <h3>Se Connecter</h3>
                             <div class="form-group">
                                 <p>Nom</p>
@@ -29,7 +29,7 @@
                             </div>
                             <button type="submit" class="bouton_1">Se connecter</button>
 
-                        </form>
+                    <?php echo form_close(); ?>
                     </div>
                     <div class="right">
                         <center>

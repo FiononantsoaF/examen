@@ -1,6 +1,7 @@
-drop database finals4;
-create database finals4;
-use finals4;
+drop database db_infop16a_ETU002740 ;
+create database db_infop16a_ETU002740 ;
+use db_infop16a_ETU002740 ;
+
 create table finals4_slots(
 	id int primary key auto_increment,
 	nom char(1) not null
@@ -21,7 +22,7 @@ create table finals4_clients(
 create table finals4_services(
 	id int primary key auto_increment,
 	nom varchar(20) not null,
-	duree decimal(),
+	duree time,
 	prix int(10) not null
 ) engine = innodb;
 
@@ -45,7 +46,7 @@ create table finals4_operation_rendez_vous(
 	constraint foreign key(rendez_vous) references finals4_demande_rendez_vous(id)
 ) engine = innodb;
 
-create table finals4_resultat_rendez_vous(
+create table finals4_devis(
 	id int primary key auto_increment,
 	rendez_vous int,
 	effectue tinyint(1),
@@ -55,9 +56,21 @@ create table finals4_resultat_rendez_vous(
 	constraint foreign key(rendez_vous) references finals4_demande_rendez_vous(id)
 ) engine = innodb;
 
-
 create table finals4_employe(
 	id int primary key auto_increment,
 	nom varchar(20),
 	mdp varchar(20)
 );
+
+
+-- operations de rendez-vous
+
+-- isoler les deux couples entree et sortie
+select entree_date , entree_time from finals4_operation_rendez_vous order by entree_date , entree_time ;
+select sortie_date , sortie_time from finals4_operation_rendez_vous order by sortie_date , sortie_time ;
+
+select tab1.* , tab2.*  , TIMEDIFF(tab2.entree_date,tab1.sortie_date) as from 
+		( select sortie_date , sortie_time from finals4_operation_rendez_vous order by sortie_date , sortie_time , slot ) as tab1 
+	left join 
+		(select entree_date , entree_time from finals4_operation_rendez_vous order by entree_date , entree_time) as tab2 
+	on tab1.sortie_date = tab2.entree_date ;
