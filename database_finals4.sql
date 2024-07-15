@@ -2,6 +2,15 @@ drop database db_infop16a_ETU002740 ;
 create database db_infop16a_ETU002740 ;
 use db_infop16a_ETU002740 ;
 
+create table reference(
+	date_reference date
+)engine=innodb;
+
+create table horaire (
+	ouvrture time ,
+	fermeture time
+)engine=innodb;
+
 create table finals4_slots(
 	id int primary key auto_increment,
 	nom char(1) not null
@@ -22,8 +31,8 @@ create table finals4_clients(
 create table finals4_services(
 	id int primary key auto_increment,
 	nom varchar(20) not null,
-	duree time,
-	prix int(10) not null
+	prix int(10) not null,
+	duree time 
 ) engine = innodb;
 
 create table finals4_demande_rendez_vous(
@@ -62,15 +71,10 @@ create table finals4_employe(
 	mdp varchar(20)
 );
 
-
--- operations de rendez-vous
-
 -- isoler les deux couples entree et sortie
-select entree_date , entree_time from finals4_operation_rendez_vous order by entree_date , entree_time ;
-select sortie_date , sortie_time from finals4_operation_rendez_vous order by sortie_date , sortie_time ;
 
-select tab1.* , tab2.*  , TIMEDIFF(tab2.entree_date,tab1.sortie_date) as from 
-		( select sortie_date , sortie_time from finals4_operation_rendez_vous order by sortie_date , sortie_time , slot ) as tab1 
-	left join 
-		(select entree_date , entree_time from finals4_operation_rendez_vous order by entree_date , entree_time) as tab2 
-	on tab1.sortie_date = tab2.entree_date ;
+create or replace view finals4_view_all_sortie as select sortie_date as daty , sortie_time as fotoana, slot from finals4_operation_rendez_vous order by sortie_date , sortie_time;
+
+create or replace view finals4_view_all_entree as select entree_date as daty, entree_time as fotoana, slot from finals4_operation_rendez_vous order by entree_date , entree_time;
+
+create or replace view finals4_view_detail_rendez_vous
