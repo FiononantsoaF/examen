@@ -110,7 +110,7 @@ ORDER BY dr.id;
 CREATE OR REPLACE VIEW finals4_view_free_slots AS
 SELECT *,
        CAST(
-           TIMEDIFF(fotoana_m, fotoana_v) - DATEDIFF(fotoana_m, fotoana_v) * 50400 AS TIME
+           TIMEDIFF(fotoana_m, fotoana_v) - DATEDIFF(fotoana_m, fotoana_v) * 140000 AS TIME
        ) AS diff
 FROM (
     SELECT finals4_view_all_sortie.slot AS slot,
