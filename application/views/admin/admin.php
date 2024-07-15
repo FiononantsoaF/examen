@@ -21,11 +21,11 @@
                             <h3>Se Connecter</h3>
                             <div class="form-group">
                                 <p>Nom</p>
-                                <p><input type="text" class="input" name="name" placeholder="Entrez votre Nom" required></p>
+                                <p><input type="text" class="input" name="nom" placeholder="Entrez votre Nom" required></p>
                             </div>
                             <div class="form-group">
                                 <p>Mot de passe </p>
-                                <input type="password" class="input"  name="passe" placeholder="Votre mot de passe">
+                                <input type="password" class="input"  name="mdp" placeholder="Votre mot de passe">
                             </div>
                             <button type="submit" class="bouton_1">Se connecter</button>
 

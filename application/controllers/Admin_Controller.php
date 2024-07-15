@@ -13,17 +13,21 @@ class Admin_Controller extends CI_Controller {
     }
 
     public function authentification() {
-        $matricule = $this->input->post('matricule');
-        $type_car = $this->input->post('type_car');
+        $nom = $this->input->post('nom');
+        $mdp = $this->input->post('mdp');
 
-        if (!empty($matricule) && !empty($type_car)) {
-			$client = $this->Client_model->get_finals4_client_bymatricule($matricule);
-			if(empty($client)) {
-				$result = $this->Client_model->enregistrer_client($matricule, $type_car);
-			}
-			redirect('Rendezvous_Controller');	               
+        if (!empty($nom) && !empty($mdp)) {
+			$admin = $this->Admin_model->get_finals4_employee($nom, $mdp);
+            if(!empty($admin)) {
+                redirect('Admin_Controller/liste_services');
+
+            } else {
+                $data['error'] = "verifier votre mot de passe";
+                $this->load->view('error_page', $data);
+            }
+			               
         } else {
-            $data['error'] = "Les champs Matricule et Type de véhicule sont obligatoires.";
+            $data['error'] = "verifier votre mot de passe";
             $this->load->view('error_page', $data);
         }
     }

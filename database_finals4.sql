@@ -21,7 +21,7 @@ create table finals4_clients(
 create table finals4_services(
 	id int primary key auto_increment,
 	nom varchar(20) not null,
-	duree int,
+	duree decimal(),
 	prix int(10) not null
 ) engine = innodb;
 
@@ -54,3 +54,10 @@ create table finals4_resultat_rendez_vous(
 	paye tinyint(1) ,
 	constraint foreign key(rendez_vous) references finals4_demande_rendez_vous(id)
 ) engine = innodb;
+
+
+create table finals4_employe(
+	id int primary key auto_increment,
+	nom varchar(20),
+	mdp varchar(20)
+);
