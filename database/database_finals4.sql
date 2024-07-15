@@ -8,7 +8,7 @@ create table reference(
 
 create table horaire (
 	ouvrture time ,
-	fermeture time ,
+	fermeture time
 )engine=innodb;
 
 create table finals4_slots(
