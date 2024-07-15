@@ -7,8 +7,7 @@ class Rendezvous_model extends CI_Model {
         $this->load->database();
     }
 	 
-	//  prend les details derendez_vous
-	 public function get_all(){
-		return  $this->db->get('view_detail_rendez_vous')->result_array();
-	 }
+	// public function get_all(){
+	// 	return  $this->db->get('view_detail_rendez_vous')->result_array();
+	// }
 }
