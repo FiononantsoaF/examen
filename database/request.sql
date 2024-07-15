@@ -1,16 +1,8 @@
 -- operations de rendez-vous
 
--- left join de view_all_sortie et de view_all_entree
-
-
-(select 
-	view_all_sortie.* , 
-	view_all_entree.* 
-		from view_all_sortie 
-		left join view_all_entree
-		on view_all_sortie.slot = view_all_entree.slot
-	)
-
-
-
+select all_sortie.* , all_entree.*  , TIMEDIFF(all_entree.entree_date,all_sortie.sortie_date) as duree from
+		( select sortie_date , sortie_time , slot from finals4_operation_rendez_vous order by sortie_date , sortie_time ) as all_sortie 
+	left join 
+		(select entree_date , entree_time , slot from finals4_operation_rendez_vous order by entree_date , entree_time) as all_entree 
+	on all_sortie.sortie_date + all_sortie.sortie_time = all_entree.slot ;
 
