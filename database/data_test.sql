@@ -1,5 +1,7 @@
 -- Ajouter des données de test pour les tables dans database_finals4.sql
 
+insert into reference values ("2024-07-13");
+
 -- Ajout de données pour la table finals4_slots
 INSERT INTO finals4_slots (nom) VALUES ('A'), ('B'), ('C');
 
@@ -18,10 +20,10 @@ INSERT INTO finals4_clients (matricule, voiture) VALUES
 
 -- Ajout de données pour la table finals4_services
 INSERT INTO finals4_services (nom, prix, duree) VALUES 
-	('reparation', 500000, 5), 
-	('check', 150000, 2), 
-	('vidange', 100000, 3), 
-	('reparation vip', 800000, 4);
+	('reparation', 500000, 50000), 
+	('check', 150000, 20000), 
+	('vidange', 100000, 30000), 
+	('reparation vip', 800000, 40000);
 
 -- Ajout de données pour la table finals4_demande_rendez_vous
 INSERT INTO finals4_demande_rendez_vous (client, services) VALUES 
