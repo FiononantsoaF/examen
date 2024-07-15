@@ -12,20 +12,24 @@
 <body>
     <div class="entete">
         <ul class="content_link">
-            <li role="presentation"><a href="#">Prise de rendez-vous</a></li>
-            <li role="presentation"><a href="#">Disabled link</a></li>
-            <li role="presentation"><a href="#">Disabled link</a></li>
+            <li role="presentation"><a href="#">Lien hafa</a></li>
+            <!-- <li role="presentation"><a href="#">Disabled link</a></li>
+            <li role="presentation"><a href="#">Disabled link</a></li> -->
         </ul>
     </div>
 
 
     <div class="contenu">
         <?php 
-            include 'liste_rendez-vous.php';
+            include 'liste_service.php';
         ?>
     </div>
-    
 
+    <div class="contenu">
+        <?php 
+            include 'modif_service.php';
+        ?>
+    </div>
 </body>
 
 <footer>

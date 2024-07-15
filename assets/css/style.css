@@ -76,11 +76,10 @@ body{
 }
 .entete{
     padding: 10px;
-    height: 70px;
+    height: 60px;
     background-color: white;
     width: 100%;
     box-shadow: 0px 4px 4px rgb(175, 175, 175);
-    align-items: center;
 }
 .all_foot{
     width: 100%;

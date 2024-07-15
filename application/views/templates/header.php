@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
+    <script src="<?php echo base_url('assets/js/boostrap.js'); ?>"></script>
 </head>
 
 <body>
@@ -17,24 +18,4 @@
             <li role="presentation"><a href="#">Disabled link</a></li>
         </ul>
     </div>
-
-
-    <div class="contenu">
-        <?php 
-            include 'liste_rendez-vous.php';
-        ?>
-    </div>
-    
-
-</body>
-
-<footer>
-    <div class="all_foot">
-        <p class="white">
-            Fy
-        </p>
-        <a href="#">Se deconnecter</a>
-    </div>
-</footer>
-
-</html>
+   

@@ -35,6 +35,6 @@
     </tr>
 </table>
 <hr>
-<form action="pdf.php">
+<form action="model_pdf.php">
     <input type="submit" class="bouton_2" value="Exporter en PDF">
 </form>

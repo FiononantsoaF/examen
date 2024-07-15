@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
 </head>
 
 <body>
@@ -17,16 +17,15 @@
 
                 <div class="form_login">
                     <div class="left">
-
                         <form action="#" method="get">
                             <h3>Se Connecter</h3>
                             <div class="form-group">
                                 <p>Nom</p>
-                                <p><input type="text" class="input" name="nom" placeholder="Entrez votre Nom" required></p>
+                                <p><input type="text" class="input" name="name" placeholder="Entrez votre Nom" required></p>
                             </div>
                             <div class="form-group">
-                                <p>Type de vehicule</p>
-                                <input type="password" name="password" class="input" placeholder="Votre mot de passe">
+                                <p>Mot de passe </p>
+                                <input type="password" class="input"  name="passe" placeholder="Votre mot de passe">
                             </div>
                             <button type="submit" class="bouton_1">Se connecter</button>
 
