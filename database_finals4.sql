@@ -73,8 +73,40 @@ create table finals4_employe(
 
 -- isoler les deux couples entree et sortie
 
-create or replace view finals4_view_all_sortie as select sortie_date as daty , sortie_time as fotoana, slot from finals4_operation_rendez_vous order by sortie_date , sortie_time;
+CREATE OR REPLACE VIEW finals4_view_all_sortie AS 
+SELECT sortie_date AS daty, sortie_time AS fotoana, slot 
+FROM finals4_operation_rendez_vous 
+ORDER BY sortie_date, sortie_time;
 
-create or replace view finals4_view_all_entree as select entree_date as daty, entree_time as fotoana, slot from finals4_operation_rendez_vous order by entree_date , entree_time;
+CREATE OR REPLACE VIEW finals4_view_all_entree AS 
+SELECT entree_date AS daty, entree_time AS fotoana, slot 
+FROM finals4_operation_rendez_vous 
+ORDER BY entree_date, entree_time;
 
-create or replace view finals4_view_detail_rendez_vous
+CREATE OR REPLACE VIEW finals4_view_detail_rendez_vous AS 
+SELECT 
+    dr.id AS rendez_vous_id,
+    cl.id AS client_id,
+    cl.matricule AS client_matricule,
+    v.nom AS voiture_nom,
+    s.id AS service_id,
+    s.nom AS service_nom,
+    s.prix AS service_prix,
+    s.duree AS service_duree,
+    op.id AS operation_id,
+    op.entree_date AS operation_entree_date,
+    op.entree_time AS operation_entree_time,
+    op.sortie_date AS operation_sortie_date,
+    op.sortie_time AS operation_sortie_time
+FROM finals4_demande_rendez_vous dr
+JOIN finals4_clients cl ON dr.client = cl.id
+JOIN finals4_voiture v ON cl.voiture = v.id
+JOIN finals4_services s ON dr.services = s.id
+LEFT JOIN finals4_operation_rendez_vous op ON dr.id = op.rendez_vous
+ORDER BY dr.id;
+
+
+
+
+
+
