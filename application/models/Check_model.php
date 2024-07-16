@@ -21,8 +21,8 @@ class Check_model extends CI_Model
 		$sql = "
         SELECT slot
         FROM finals4_view_free_slots
-        WHERE 
-            (fotoana_v < ? AND (fotoana_m > ? or fotoana_m is NULL))
+        WHERE
+            (fotoana_v < ? AND (fotoana_m > ? or fotoana_m is NULL ))
             AND (diff >= ? OR diff IS NULL)
     	";
 	

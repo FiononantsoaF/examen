@@ -50,7 +50,6 @@ create table finals4_devis(
 	rendez_vous int,
 	prix int,
 	payement date,
-	paye tinyint(1),
 	constraint foreign key(rendez_vous) references finals4_demande_rendez_vous(id)
 ) engine = innodb;
 create table finals4_employe(
