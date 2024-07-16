@@ -33,4 +33,9 @@ class Client_Controller extends CI_Controller {
             $this->load->view('error_page', $data);
         }
     }
+    public function liste_client() {
+        $client['all_clients'] = $this->Client_model->get_all_finals4_client();
+        $this->load->view('calendar/calendar.php',$client);
+    }    
+
 }

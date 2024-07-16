@@ -1,3 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/hafa.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
+    <link rel="shortcut icon" href="<?php echo base_url('assets/img/Logo.jpg');?>" type="image/x-icon">
+    
+</head>
+
+<body>
+    <div class="entete">
+        <ul class="content_link">
+            <li role="presentation"><a href="<?php echo site_url('Rendezvous_Controller/get_all_services');?>">Prendre rendez_vous</a></li>
+            <li role="presentation"><a href="<?php echo site_url('Rendezvous_Controller/liste_rendezvous');?>">Mes rendez_vous</a></li>
+        </ul>
+    </div>
 <div class="contenu">
 <h3>Mes rendez-vous</h3>
 <hr>

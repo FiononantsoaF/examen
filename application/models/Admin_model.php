@@ -40,4 +40,16 @@ class Admin_model extends CI_Model {
     public function delete_service($id) {
         $this->db->delete('finals4_services', array('id' => $id));
     }
+
+   ///chiffres d'affaires
+   public function chiffres_affaires() {
+        $query = $this->db->get('finals4_view_service_prix_par_voiture');
+        return $query->result_array();
+    }
+    public function total_affaires() {
+        $query = $this->db->get('finals4_view_service_prix_par_payement');
+        return $query->result_array();
+    }
+   
+   
 }

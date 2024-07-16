@@ -5,12 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/hafa.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
-    <link rel="shortcut icon" href="<?php echo base_url('assets/img/Logo.jpg');?>" type="image/x-icon">
-    
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/hafa.css">
+    <link rel="shortcut icon" href="../assets/img/Logo.jpg" type="image/x-icon">
 </head>
 
 <body>
@@ -21,4 +18,22 @@
             <li role="presentation"><a href="#">Disabled link</a></li>
         </ul>
     </div>
-   
+
+
+        <?php 
+            include 'liste_devis.php';
+        ?>
+    
+
+</body>
+
+<footer>
+    <div class="all_foot">
+        <p class="white">
+            Fy
+        </p>
+        <a href="#">Se deconnecter</a>
+    </div>
+</footer>
+
+</html>

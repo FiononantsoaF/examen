@@ -7,6 +7,11 @@ class Client_model extends CI_Model {
         $this->load->database();
     }
 
+    public function get_all_finals4_client() {
+        $query = $this->db->get('finals4_clients');
+        return $query->result_array();
+    }
+
     public function get_finals4_client_bymatricule($matricules) {
         $this->db->where('matricule', $matricules);
         $query = $this->db->get('finals4_clients');

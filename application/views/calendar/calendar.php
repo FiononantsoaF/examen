@@ -1,17 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calendrier de Réparation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
     <script src='<?php echo base_url("assets/js/index.global.min.js"); ?>'></script>
 </head>
 <body>
+    <div class="entete">
+        <ul class="content_link">
+            <li role="presentation"><a href="<?php  echo site_url("Admin_Controller/index") ;?>">Service</a></li>
+            <li role="presentation"><a href="<?php  echo site_url("Rendezvous_Controller/calendar") ;?>">Calendrier</a></li>
+            <li role="presentation"><a href="#">Devis</a></li>
+            <li role="presentation"><a href="#"></a></li>
+            <li role="presentation"><a href="<?php  echo site_url("Admin_Controller/dashboard") ;?>">Dashboard</a></li>
+        </ul>
+    </div>
     <div class="contenu">
         <h3>Calendrier de Réparation</h3>
         <hr>
         <div id='calendar'></div>
     </div>
-
+    
     <div id="modalForm" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -20,14 +30,25 @@
                 <label for="date_debut">Date Début:</label>
                 <input type="text" id="date_debut" name="date_debut" readonly><br><br>
 
-                <label for="matricule">Matricule Voiture:</label>
-                <input type="text" id="matricule" name="matricule"><br><br>
+                <label for="time">Time:</label>
+                <input type="text" id="time" name="time" readonly><br><br>
 
                 <label for="service">Service:</label>
-                <input type="text" id="service" name="service"><br><br>
-
-                <label for="nom">Nom:</label>
-                <input type="text" id="nom" name="nom"><br><br>
+                <select name="service" id="service" class="input">
+                    <?php if (!empty($liste_service)) {
+                        foreach ($liste_service as $service): ?>
+                            <option value="<?= $service['id']; ?>"><?= $service['nom']; ?></option>
+                        <?php endforeach;
+                    } ?>
+                </select>
+                <p>Matricule Voiture</p>
+                <select name="matricule" id="matricule" class="input">
+                    <?php if (!empty($all_clients)) {
+                        foreach ($all_clients as $client): ?>
+                            <option value="<?= $client['id']; ?>"><?= $client['matricule']; ?></option>
+                        <?php endforeach;
+                    } ?>
+                </select>
 
                 <button type="button" onclick="submitForm()">Soumettre</button>
             </form>
@@ -49,7 +70,7 @@
                 .then(data => {
                     var events = data.map(item => {
                         return {
-                            title: item.client_matricule + ":" + item.service_nom,
+                            title: item.client_matricule + " : " + item.service_nom  +"  : "+ item.slot,
                             start: item.date_debut,
                             end: item.date_fin 
                         };
@@ -83,14 +104,14 @@
         function submitForm() {
             var form = document.getElementById('repairForm');
             var formData = new FormData(form);
-            fetch('<?php echo site_url('Rendezvous_Controller/save_form'); ?>', {
+            fetch('<?php echo site_url('Rendezvous_Controller/check_dispo'); ?>', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.text())
             .then(data => {
-                alert('Formulaire soumis avec succès');
                 document.getElementById('modalForm').style.display = "none";
+                alert(data);
                 location.reload();
             })
             .catch(error => {

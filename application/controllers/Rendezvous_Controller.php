@@ -21,6 +21,7 @@ class Rendezvous_Controller extends CI_Controller {
         foreach ($events as $event) {
             $data[] = [
                 'service_nom' => $event->service_nom,
+                'slot' => $event->slot_nom,
                 'date_debut' =>  $event->operation_entree_date, // Vous pouvez personnaliser la date si nécessaire
                 'date_fin' =>  $event->operation_sortie_date, // Vous pouvez personnaliser l'heure si nécessaire
                 'client_matricule' =>  $event->client_matricule
@@ -33,13 +34,11 @@ class Rendezvous_Controller extends CI_Controller {
     
  
     public function index() {
-        $this->load->view('templates/header.php');
         $this->load->view('rendezvous/rendezvous.php');
         $this->load->view('templates/footer.php');
     }
 
     public function liste_rendezvous() {
-        $this->load->view('templates/header.php');
         $client_id = $this->session->userdata('client_id');
         $data['list_rendezvous'] = $this->Rendezvous_model->get_rendezvousbyclient($client_id);
         $this->load->view('rendezvous/liste_rendezvous.php',$data);
@@ -47,14 +46,12 @@ class Rendezvous_Controller extends CI_Controller {
     }
 
     public function detail_rendezvous($idr){
-        $this->load->view('templates/header.php');
         $data['detail_rendezvous'] = $this->Rendezvous_model->get_detail_rendezvous($idr);
         $this->load->view('rendezvous/detail_rendezvous.php',$data);
         $this->load->view('templates/footer.php');
     }
 
     public function get_all_services(){
-        $this->load->view('templates/header.php');
         $data['liste_service'] = $this->Admin_model->get_finals4_services();
         $this->load->view('rendezvous/rendezvous.php',$data);
         $this->load->view('templates/footer.php');
@@ -87,7 +84,11 @@ class Rendezvous_Controller extends CI_Controller {
         $entree_date = $this->input->post('date_debut');
         $entree_time = $this->input->post('time');
         $data['okey'] = $this->Rendezvous_model->save_rendez_vous_to_database($client, $service_id, $id_slot, $entree_date, $entree_time);
-        
+        $cl = $this->session->userdata('client_id');
+        $valiny=$this->Rendezvous_model->get_last_rendezvous($cl);
+        $reponse['detail_rendezvous']=$this->Rendezvous_model->get_detail_rendezvous($valiny);
+        $this->load->view('rendezvous/detail_rendezvous.php',$reponse);
+        $this->load->view('templates/footer.php');
     }
     
 
