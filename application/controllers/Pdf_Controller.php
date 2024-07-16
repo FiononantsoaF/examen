@@ -100,27 +100,29 @@ class Pdf_Controller extends CI_Controller
 		$pdf->SetFont('Arial', '', 12, true);
 		$pdf->Cell(95, 10, $devis_payment_date, 0, 1, 'C', true);
 
+		$pdf->Output();
+
 		// Generate a unique file name for the PDF
-		$file_name = uniqid('ticket_', true) . '.pdf';
+		// $file_name = uniqid('ticket_', true) . '.pdf';
 
-		// Determine the download directory based on OS
-		if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-			// Windows
-			$file_path = 'C:\\Users\\' . getenv('USERNAME') . '\\Downloads\\' . $file_name;
-		} else {
-			// Assume Unix-like
-			$file_path = getenv('HOME') . '/Downloads/' . $file_name;
-		}
+		// // Determine the download directory based on OS
+		// if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+		// 	// Windows
+		// 	$file_path = 'C:\\Users\\' . getenv('USERNAME') . '\\Downloads\\' . $file_name;
+		// } else {
+		// 	// Assume Unix-like
+		// 	$file_path = getenv('HOME') . '/Downloads/' . $file_name;
+		// }
 
-		// Output PDF to the determined file path
-		$pdf->Output($file_path, 'F');
+		// // Output PDF to the determined file path
+		// $pdf->Output($file_path, 'F');
 
-		// Display the PDF in the browser
-		header('Content-Type: application/pdf');
-		header('Content-Disposition: inline; filename="' . $file_name . '"');
-		header('Content-Length: ' . filesize($file_path));
-		readfile($file_path);
-		exit;
+		// // Display the PDF in the browser
+		// header('Content-Type: application/pdf');
+		// header('Content-Disposition: inline; filename="' . $file_name . '"');
+		// header('Content-Length: ' . filesize($file_path));
+		// readfile($file_path);
+		// exit;
 
 		// Optionally, return the file path for further handling
 		return $file_path;
