@@ -95,6 +95,26 @@ FROM finals4_demande_rendez_vous dr
 	LEFT JOIN finals4_devis dv ON dr.id = dv.rendez_vous
 ORDER BY dr.id;
 
+CREATE OR REPLACE VIEW finals4_view_service_prix_par_voiture AS
+SELECT 
+    voiture_nom,
+    SUM(service_prix) AS total_service_prix
+FROM 
+    finals4_view_detail_rendez_vous
+GROUP BY 
+    voiture_nom;
+
+CREATE OR REPLACE VIEW finals4_view_service_prix_par_payement AS
+SELECT 
+    SUM(CASE WHEN devis_payment_date IS NOT NULL THEN service_prix ELSE 0 END) AS total_paye,
+    SUM(CASE WHEN devis_payment_date IS NULL THEN service_prix ELSE 0 END) AS total_non_paye
+FROM 
+    finals4_view_detail_rendez_vous;
+
+
+
+
+
 CREATE OR REPLACE VIEW finals4_view_free_slots AS
 SELECT *,
 	CAST(

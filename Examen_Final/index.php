@@ -7,6 +7,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/img/Logo.jpg" type="image/x-icon">
 </head>
 
 <body>

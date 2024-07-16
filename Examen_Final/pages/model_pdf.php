@@ -1,6 +1,7 @@
 <?php
     require('fpdf.php');
 
+    // Ici vous DOGETER
 
     $pdf = new FPDF();
     $pdf->AddPage();
@@ -89,3 +90,4 @@
     $pdf->Cell(95,10,'12-07-2024',0,1,'c',true);
     $pdf->Output();
 ?>
+

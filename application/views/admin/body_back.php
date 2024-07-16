@@ -13,6 +13,8 @@
             <li role="presentation"><a href="#">Service</a></li>
             <li role="presentation"><a href="<?php  echo site_url("Rendezvous_Controller/calendar") ;?>">Calendrier</a></li>
             <li role="presentation"><a href="#">Devis</a></li>
+            <li role="presentation"><a href="#"></a></li>
+            <li role="presentation"><a href="<?php  echo site_url("Rendezvous_Controller/calendar") ;?>">Dashboard</a></li>
         </ul>
     </div>
     <div>

@@ -6,29 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/hafa.css">
+    <link rel="shortcut icon" href="../assets/img/Logo.jpg" type="image/x-icon">
 </head>
 
 <body>
     <div class="entete">
         <ul class="content_link">
-            <li role="presentation"><a href="#">Lien hafa</a></li>
-            <li role="presentation"><a href="">Liste services</a></li>
-            <!-- <li role="presentation"><a href="#">Disabled link</a></li>  -->
+            <li role="presentation"><a href="#">Prise de rendez-vous</a></li>
+            <li role="presentation"><a href="#">Disabled link</a></li>
+            <li role="presentation"><a href="#">Disabled link</a></li>
         </ul>
     </div>
 
-    <div class="contenu">
-        <?php 
-            include 'liste_service.php';
-        ?>
-    </div>
 
-    <div class="contenu">
         <?php 
-            include 'modif_service.php';
+            include 'liste_devis.php';
         ?>
-    </div>
+    
+
 </body>
 
 <footer>

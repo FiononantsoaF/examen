@@ -71,4 +71,12 @@ class Admin_Controller extends CI_Controller {
         $this->Admin_model->delete_service($id);
         $this->liste_services();
     }
+    public function dashboard() {
+        $data['chiffres'] = $this->Admin_model->chiffres_affaires();
+        $data['total'] = $this->Admin_model->total_affaires();
+        $this->load->view('admin/acceuil', $data);
+    }
+
+    //devis
+    
 }

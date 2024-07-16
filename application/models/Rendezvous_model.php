@@ -56,7 +56,6 @@ class Rendezvous_model extends CI_Model
 			$sortie_time_obj->add(new DateInterval('P1D')); // Add one day
 			$sortie_date = $sortie_time_obj->format('Y-m-d');
 		}
-
 		$data = array(
 			"rendez_vous" => $this->get_last_rendezvous_id(),
 			"slot" => $id_slot,
@@ -98,11 +97,17 @@ class Rendezvous_model extends CI_Model
 
 		return $this->db->trans_status(); // Return transaction status
 	}
-
-	public function get_last_rendezvous_id($matricule)
+	public function get_last_rendezvous_id()
 	{
 		$this->db->select_max('id');
-		$this->db->where('client', $matricule);
+		$query = $this->db->get('finals4_demande_rendez_vous');
+		return $query->row()->id;
+	}
+
+	public function get_last_rendezvous($matricule)
+	{
+		$this->db->select_max('id');
+        $this->db->where('client',$matricule);
 		$query = $this->db->get('finals4_demande_rendez_vous');
 		return $query->row()->id;
 		;

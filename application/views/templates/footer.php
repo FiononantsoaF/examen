@@ -7,5 +7,4 @@
         <a href="#">Se deconnecter</a>
     </div>
 </footer>
-
 </html>
