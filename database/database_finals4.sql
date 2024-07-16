@@ -48,7 +48,6 @@ create table finals4_operation_rendez_vous(
 create table finals4_devis(
 	id int primary key auto_increment,
 	rendez_vous int,
-	effectue tinyint(1),
 	prix int,
 	payement date,
 	paye tinyint(1),
@@ -137,8 +136,8 @@ FROM (
 	) AS tab
 WHERE fotoana_v < fotoana_m
 union
-SELECT slot,
+(SELECT slot,
 	MAX(CONCAT(sortie_date, ' ', sortie_time)) AS fotoana_v,
 	NULL , NULL
 FROM finals4_operation_rendez_vous 
-GROUP BY slot order by fotoana_v limit 1;
+GROUP BY slot order by fotoana_v limit 1);
