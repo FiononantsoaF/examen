@@ -12,12 +12,13 @@ class Suggestion_model extends CI_Model
             WHERE diff > ?";
 
 		$query = $this->db->query($sql, array($required_diff));
-		return $query->result();
+		return $query->result_array();
 	}
 
 	public function get_free_slots_for_service($service_id){
-		$sql = "";
-		$query = $this->db->query($sql, array($service_id));
+		$this->load->model("Admin_model");
+		$service = $this->Admin_model->get_service_by_id( $service_id );
+		return $this->get_free_slots($service['duree']);
 	}
 
 }
