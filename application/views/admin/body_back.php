@@ -8,9 +8,9 @@
 <body>
     <div class="entete">
         <ul class="content_link">
-            <li role="presentation"><a href="#">Prise de rendez-vous</a></li>
-            <li role="presentation"><a href="#">Disabled link</a></li>
-            <li role="presentation"><a href="#">Disabled link</a></li>
+            <li role="presentation"><a href="#">Service</a></li>
+            <li role="presentation"><a href="#">Calendrier</a></li>
+            <li role="presentation"><a href="#">Devis</a></li>
         </ul>
     </div>
     <div class="contenu">
