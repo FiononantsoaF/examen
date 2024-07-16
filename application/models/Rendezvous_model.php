@@ -99,11 +99,12 @@ class Rendezvous_model extends CI_Model
 		return $this->db->trans_status(); // Return transaction status
 	}
 
-	private function get_last_rendezvous_id()
+	public function get_last_rendezvous_id($matricule)
 	{
 		$this->db->select_max('id');
+		$this->db->where('client', $matricule);
 		$query = $this->db->get('finals4_demande_rendez_vous');
 		return $query->row()->id;
+		;
 	}
 }
-

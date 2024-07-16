@@ -33,7 +33,7 @@ class Devis_model extends CI_Model
 	}
 
 	// Function to validate the payement date
-	private function validate_payement_date($rendez_vous_id, $payement_date)
+	public function validate_payement_date($rendez_vous_id, $payement_date)
 	{
 		$this->db->select('entree_date');
 		$this->db->where('rendez_vous', $rendez_vous_id);
@@ -50,4 +50,8 @@ class Devis_model extends CI_Model
 		}
 		return true; // If there's no corresponding entry in finals4_operation_rendez_vous, allow the insert/update
 	}
+
+	
+
+
 }
