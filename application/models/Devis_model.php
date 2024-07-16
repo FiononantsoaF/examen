@@ -33,21 +33,42 @@ class Devis_model extends CI_Model
 	}
 
 	// Function to validate the payement date
-	private function validate_payement_date($rendez_vous_id, $payement_date)
+	public function validate_payement_date($rendez_vous_id, $payement_date)
 	{
-		$this->db->select('entree_date');
-		$this->db->where('rendez_vous', $rendez_vous_id);
-		$this->db->order_by('entree_date', 'ASC');
-		$query = $this->db->get('finals4_operation_rendez_vous', 1); // Limit to 1 result
+		$this->db->select('operation_entree_date');
+		$this->db->where('rendez_vous_id', $rendez_vous_id);
+		$query = $this->db->get('finals4_view_detail_rendez_vous', 1); // Limit to 1 result
 
 		if ($query->num_rows() > 0) {
 			$row = $query->row();
-			if ($payement_date >= $row->entree_date) {
-				return true;
+			if ($payement_date >= $row->operation_entree_date) {
+				return "bye";
 			} else {
-				return false;
+				return "ewy";
 			}
 		}
-		return true; // If there's no corresponding entry in finals4_operation_rendez_vous, allow the insert/update
+		return "hi"; // If there's no corresponding entry in finals4_view_detail_rendez_vous, allow the insert/update
+
 	}
+	public function get_unpaid_rendez_vous()
+	{
+		$this->db->where('devis_payment_date IS NULL'); // Assuming 'payement' field is used to indicate payment status
+		$query = $this->db->get('finals4_view_detail_rendez_vous');
+		return $query->result_array();
+	}
+
+	public function get_paid_rendez_vous()
+	{
+		$this->db->where('devis_payment_date IS not NULL'); // Assuming 'payement' field is used to indicate payment status
+		$query = $this->db->get('finals4_view_detail_rendez_vous');
+		return $query->result_array();
+	}
+
+	public function update_payment_date($rendez_vous_id, $payment_date)
+	{
+		$this->db->set('payement', $payment_date);
+		$this->db->where('rendez_vous', $rendez_vous_id);
+		return $this->db->update('finals4_devis');
+	}
+
 }

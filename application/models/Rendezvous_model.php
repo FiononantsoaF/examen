@@ -110,6 +110,6 @@ class Rendezvous_model extends CI_Model
         $this->db->where('client',$matricule);
 		$query = $this->db->get('finals4_demande_rendez_vous');
 		return $query->row()->id;
+		;
 	}
 }
-

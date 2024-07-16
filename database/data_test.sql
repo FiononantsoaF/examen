@@ -28,16 +28,14 @@ INSERT INTO finals4_demande_rendez_vous (client, services) VALUES
 	(1, 1), 
 	(2, 2), 
 	(1, 3), 
-	(3, 4),
-	(4, 2);
+	(3, 4);
 
 -- Ajout de données pour la table finals4_operation_rendez_vous
 INSERT INTO finals4_operation_rendez_vous (rendez_vous, slot, entree_date, entree_time, sortie_date, sortie_time) 
 VALUES (1, 1, '2024-07-13', '09:00:00', '2024-07-13', '14:00:00'),
        (2, 2, '2024-07-13', '14:30:00', '2024-07-13', '16:30:00'),
        (3, 1, '2024-07-14', '8:00:00', '2024-07-14', '11:00:00'),
-       (5, 1, '2024-07-14', '15:30:00', '2024-07-14', '17:30:00'),
-       (4, 3, '2024-07-14', '15:30:00', '2024-07-15', '13:00:00');
+       (4, 1, '2024-07-14', '15:30:00', '2024-07-14', '17:30:00');
 
 -- Ajout de données pour la table finals4_devis
 INSERT INTO finals4_devis (rendez_vous, prix, payement) 
@@ -52,4 +50,3 @@ INSERT INTO finals4_employe (nom, mdp)
 			 ('Bob', '123456'), 
 			 ('Eva', 'securepassword'), 
 			 ('David', 'p@ssw0rd');
-
