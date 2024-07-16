@@ -87,8 +87,7 @@ SELECT dr.id AS rendez_vous_id,
        op.sortie_date AS operation_sortie_date,
        op.sortie_time AS operation_sortie_time,
        sl.nom AS slot_nom,
-       dv.payement AS devis_payment_date,
-	   dv.paye AS paye
+       dv.payement AS devis_payment_date
 FROM finals4_demande_rendez_vous dr
 	JOIN finals4_clients cl ON dr.client = cl.id
 	JOIN finals4_voiture v ON cl.voiture = v.id
