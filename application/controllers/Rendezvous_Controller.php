@@ -52,11 +52,44 @@ class Rendezvous_Controller extends CI_Controller {
         $this->load->view('rendezvous/detail_rendezvous.php',$data);
         $this->load->view('templates/footer.php');
     }
+
     public function get_all_services(){
         $this->load->view('templates/header.php');
         $data['liste_service'] = $this->Admin_model->get_finals4_services();
         $this->load->view('rendezvous/rendezvous.php',$data);
         $this->load->view('templates/footer.php');
     }
+
+    public function check_dispo() {
+        $date_debut = $this->input->post('date_debut');
+        $time = $this->input->post('time');
+        $service = $this->input->post('service');
+    
+        $this->load->model('Check_model');
+        $slot = $this->Check_model->is_slot_available($service, $date_debut, $time);
+    
+        if ($slot === false) {
+            echo '<p>La date n\'est pas disponible</p>';
+        } else {
+            echo form_open('Rendezvous_Controller/save_rendezvous');
+            echo '<input type="hidden" name="date_debut" value="' . $date_debut . '">';
+            echo '<input type="hidden" name="time" value="' . $time . '">';
+            echo '<input type="hidden" name="service" value="' . $service . '">';
+            echo '<input type="hidden" name="slot" value="' . $slot . '">';
+            echo '<input type="submit" class="bouton_1" value="Envoyer">';
+            echo form_close();
+        }
+    }
+    public function save_rendezvous() {
+        $client = $this->session->userdata('client_id'); // Assuming you store client id in session
+        $service_id = $this->input->post('service');
+        $id_slot = $this->input->post('slot');
+        $entree_date = $this->input->post('date_debut');
+        $entree_time = $this->input->post('time');
+    
+        $data['okey'] = $this->Rendezvous_model->save_rendez_vous_to_database($client, $service_id, $id_slot, $entree_date, $entree_time);
+
+    }
+    
 
 }

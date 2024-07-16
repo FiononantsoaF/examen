@@ -97,4 +97,5 @@ class Rendezvous_model extends CI_Model
 		$this->db->insert('finals4_operation_rendez_vous', $rendez_vous_data);
 		$this->db->insert('finals4_devis', $devis_data);
 	}
+    
 }
