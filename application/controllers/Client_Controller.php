@@ -6,6 +6,7 @@ class Client_Controller extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Client_model'); 
+        $this->load->model('Admin_model'); 
         $this->load->library('session');
     }
 
@@ -26,7 +27,7 @@ class Client_Controller extends CI_Controller {
 			}
             $this->session->set_userdata('client_id', $client[0]['id']);
             $client_id = $this->session->userdata('client_id');
-			redirect('Rendezvous_Controller');	               
+			redirect('Rendezvous_Controller/get_all_services');	               
         } else {
             $data['error'] = "Les champs Matricule et Type de véhicule sont obligatoires.";
             $this->load->view('error_page', $data);

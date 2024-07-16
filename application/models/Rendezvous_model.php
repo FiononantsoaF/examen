@@ -85,8 +85,6 @@ class Rendezvous_model extends CI_Model
 
 	public function save_rendez_vous_to_database($client_id, $service_id, $id_slot, $entree_date, $entree_time)
 	{
-		$this->db->trans_start(); // Start transaction
-
 		$simple_rdv_data = $this->create_simple_rdv($client_id, $service_id);
 		$this->db->insert('finals4_demande_rendez_vous', $simple_rdv_data);
 
@@ -108,4 +106,4 @@ class Rendezvous_model extends CI_Model
 		return $query->row()->id;
 	}
 }
-?>
+

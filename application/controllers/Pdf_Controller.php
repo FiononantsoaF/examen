@@ -25,12 +25,6 @@
             $pdf->AddPage();
             $pdf->SetFont('Arial', 'B', 25);
 
-            $pdf->SetFillColor(175, 175, 175);
-            $pdf->Cell(0, 15, "Notre garage :)", 0, 1, 'C', true);
-
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(0, 15, 'Ticket de votre rendez-vous dans notre Garage', 0, 1, 'C');
-
             $pdf->Cell(95, 10, 'Details', 0, 0, 'C', true);
             $pdf->Cell(95, 10, 'Information', 0, 1, 'C', true);
 
