@@ -40,11 +40,11 @@ VALUES (1, 1, '2024-07-13', '09:00:00', '2024-07-13', '14:00:00'),
        (4, 3, '2024-07-14', '15:30:00', '2024-07-15', '13:00:00');
 
 -- Ajout de données pour la table finals4_devis
-INSERT INTO finals4_devis (rendez_vous, effectue, prix, payement, paye) 
-	VALUES (1, 1, 500000, '2024-07-21', 1), 
-			 (2, 1, 150000, '2024-07-19', 1), 
-			 (3, 1, 100000, '2024-07-24', 1), 
-			 (4, 1, 800000, '2024-07-29', 1);
+INSERT INTO finals4_devis (rendez_vous, prix, payement) 
+	VALUES (1, 500000, '2024-07-21'), 
+			 (2, 150000, '2024-07-19'), 
+			 (3, 100000, '2024-07-24'), 
+			 (4, 800000, '2024-07-29');
 
 -- Ajout de données pour la table finals4_employe
 INSERT INTO finals4_employe (nom, mdp) 
