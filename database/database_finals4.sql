@@ -137,8 +137,8 @@ FROM (
 	) AS tab
 WHERE fotoana_v < fotoana_m
 union
-SELECT slot,
+(SELECT slot,
 	MAX(CONCAT(sortie_date, ' ', sortie_time)) AS fotoana_v,
 	NULL , NULL
 FROM finals4_operation_rendez_vous 
-GROUP BY slot order by fotoana_v limit 1;
+GROUP BY slot order by fotoana_v limit 1);

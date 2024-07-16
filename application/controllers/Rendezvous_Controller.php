@@ -38,7 +38,7 @@ class Rendezvous_Controller extends CI_Controller {
         $this->load->view('templates/header.php');
         $data['detail_rendezvous'] = $this->Rendezvous_model->get_detail_rendezvous($idr);
         $this->load->view('rendezvous/detail_rendezvous.php',$data);
-        $this->load->view('templates/footer.php');8
+        $this->load->view('templates/footer.php');
     }
 
 }
