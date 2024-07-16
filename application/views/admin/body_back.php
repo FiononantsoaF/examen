@@ -22,7 +22,8 @@
         </div>
         <div class="form-group">
             <p>Durée (h)</p>
-            <input type="time" class="input" name="duree" min="08:00" max="18:00">
+            <input type="time" class="input" name="duree">
+            <!-- <input type="time" class="input" name="duree" min="08:00" max="18:00"> -->
         </div>
         <div class="form-group">
             <p>Prix (Ar)</p>
