@@ -48,7 +48,6 @@ class Devis_model extends CI_Model
 				return false;
 			}
 		}
-
 		return true; // If there's no corresponding entry in finals4_operation_rendez_vous, allow the insert/update
 	}
 }

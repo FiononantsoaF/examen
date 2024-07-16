@@ -48,7 +48,6 @@ create table finals4_operation_rendez_vous(
 create table finals4_devis(
 	id int primary key auto_increment,
 	rendez_vous int,
-	effectue tinyint(1),
 	prix int,
 	payement date,
 	paye tinyint(1),
