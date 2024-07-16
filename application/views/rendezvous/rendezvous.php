@@ -27,6 +27,4 @@
     </form> 
     <a href="<?php echo site_url('Rendezvous_Controller/liste_rendezvous'); ?>">liste de mes rendez vous</a>
 
-</div>       
-
-        
+</div>

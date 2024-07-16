@@ -9,15 +9,16 @@ class Suggestion_model extends CI_Model
 		$sql = "
             SELECT *
             FROM finals4_view_free_slots
-            WHERE diff > ?";
+            WHERE diff > ? or diff is NULL";
 
 		$query = $this->db->query($sql, array($required_diff));
 		return $query->result_array();
 	}
 
-	public function get_free_slots_for_service($service_id){
+	public function get_free_slots_for_service($service_id)
+	{
 		$this->load->model("Admin_model");
-		$service = $this->Admin_model->get_service_by_id( $service_id );
+		$service = $this->Admin_model->get_service_by_id($service_id);
 		return $this->get_free_slots($service['duree']);
 	}
 
