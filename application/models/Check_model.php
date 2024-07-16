@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Suggestion_model extends CI_Model
+class Check_model extends CI_Model
 {
 	public function is_slot_available($service_id, $date, $time)
 	{
@@ -28,27 +28,20 @@ class Suggestion_model extends CI_Model
         SELECT slot
         FROM finals4_view_free_slots
         WHERE 
-            (fotoana_v < ? AND fotoana_m > ?)
-            AND (diff > ? OR diff IS NULL)
+            (fotoana_v < ? AND (fotoana_m > ? or fotoana_m is NULL ))
+            AND (diff >= ? OR diff IS NULL)
     ";
 
 		$query = $this->db->query($sql, array($start_datetime_str, $end_datetime_str, $required_diff));
 
 		// If the query returns any rows, there is at least one available slot
 		if ($query->num_rows() > 0) {
-			return true;
+			$row = $query->row();
+        return $row->slot;
 		}
 
 		// No slots are available
 		return false;
-	}
-
-
-	public function get_free_slots_for_service($service_id)
-	{
-		$this->load->model("Admin_model");
-		$service = $this->Admin_model->get_service_by_id($service_id);
-		return $this->get_free_slots($service['duree']);
 	}
 
 }
