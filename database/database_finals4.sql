@@ -76,20 +76,21 @@ ORDER BY entree_date,
 	entree_time;
 CREATE OR REPLACE VIEW finals4_view_detail_rendez_vous AS
 SELECT dr.id AS rendez_vous_id,
-	cl.id AS client_id,
-	cl.matricule AS client_matricule,
-	v.nom AS voiture_nom,
-	s.id AS service_id,
-	s.nom AS service_nom,
-	s.prix AS service_prix,
-	s.duree AS service_duree,
-	op.id AS operation_id,
-	op.entree_date AS operation_entree_date,
-	op.entree_time AS operation_entree_time,
-	op.sortie_date AS operation_sortie_date,
-	op.sortie_time AS operation_sortie_time,
-	sl.nom AS slot_nom,
-	dv.payement AS devis_payment_date
+       cl.id AS client_id,
+       cl.matricule AS client_matricule,
+       v.nom AS voiture_nom,
+       s.id AS service_id,
+       s.nom AS service_nom,
+       s.prix AS service_prix,
+       s.duree AS service_duree,
+       op.id AS operation_id,
+       op.entree_date AS operation_entree_date,
+       op.entree_time AS operation_entree_time,
+       op.sortie_date AS operation_sortie_date,
+       op.sortie_time AS operation_sortie_time,
+       sl.nom AS slot_nom,
+       dv.payement AS devis_payment_date,
+	   dv.paye AS paye
 FROM finals4_demande_rendez_vous dr
 	JOIN finals4_clients cl ON dr.client = cl.id
 	JOIN finals4_voiture v ON cl.voiture = v.id

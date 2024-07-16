@@ -1,3 +1,4 @@
+<div class="contenu">
 <h3>Mes rendez-vous</h3>
 <hr>
 <?php if (!empty($detail_rendezvous)) : ?>
@@ -9,6 +10,10 @@
     <tr>
         <th>Type Voiture</th>
         <td><?php echo $detail_rendezvous[0]['voiture_nom']; ?></td>
+    </tr>
+    <tr>
+        <th>Slot</th>
+        <td><?php echo $detail_rendezvous[0]['slot_nom']; ?></td>
     </tr>
     <tr>
         <th>Type reparation</th>
@@ -27,12 +32,36 @@
         <th>Cout</th>
         <td><?php echo $detail_rendezvous[0]['service_prix']; ?> Ar</td>
     </tr>
-
+    <tr>
+        <th>Date paiement</th>
+        <td><?php echo $detail_rendezvous[0]['devis_payment_date']; ?></td>
+    </tr>
+    <tr>
+        <th></th>
+        <td><?php $fonction=$detail_rendezvous[0]['paye'];
+            if($fonction == 1) {
+                echo "Paye";
+            } else {
+                echo "Impaye";
+            }
+         ?></td>
+    </tr>
 </table>
 <hr>
-<form action="model_pdf.php">
-    <input type="submit" class="bouton_2" value="Exporter en PDF">
-</form>
-<?php else : ?>
-<p>Aucun détail disponible pour ce rendez-vous.</p>
-<?php endif; ?>
+<?php echo form_open('Pdf_Controller/generate_pdf'); ?>
+        <input type="hidden" name="client_matricule" value="<?php echo $detail_rendezvous[0]['client_matricule']; ?>">
+        <input type="hidden" name="voiture_nom" value="<?php echo $detail_rendezvous[0]['voiture_nom']; ?>">
+        <input type="hidden" name="slot_nom" value="<?php echo $detail_rendezvous[0]['slot_nom']; ?>">
+        <input type="hidden" name="service_nom" value="<?php echo $detail_rendezvous[0]['service_nom']; ?>">
+        <input type="hidden" name="service_duree" value="<?php echo $detail_rendezvous[0]['service_duree']; ?>">
+        <input type="hidden" name="operation_entree_date" value="<?php echo $detail_rendezvous[0]['operation_entree_date']; ?>">
+        <input type="hidden" name="operation_entree_time" value="<?php echo $detail_rendezvous[0]['operation_entree_time']; ?>">
+        <input type="hidden" name="service_prix" value="<?php echo $detail_rendezvous[0]['service_prix']; ?>">
+        <input type="hidden" name="devis_payment_date" value="<?php echo $detail_rendezvous[0]['devis_payment_date']; ?>">
+        <input type="hidden" name="paye" value="<?php echo $detail_rendezvous[0]['paye']; ?>">
+        <input type="submit" class="bouton_2" value="Exporter en PDF">
+  <?php echo form_close(); ?>
+    <?php else : ?>
+    <p>Aucun détail disponible pour ce rendez-vous.</p>
+    <?php endif; ?>
+</div>

@@ -1,7 +1,6 @@
 <?php
     require('fpdf.php');
 
-    // Ici vous DOGETER
 
     $pdf = new FPDF();
     $pdf->AddPage();

@@ -5,8 +5,19 @@ class Rendezvous_Controller extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('Rendezvous_model');  // Assurez-vous de charger le modèle ici
+        $this->load->model('Rendezvous_model');
         $this->load->library('session');
+    }
+
+    public function calendar() {
+        $this->load->view('calendar/calendar.php');
+    } 
+
+    public function get_all() {
+        $events = $this->Rendezvous_model->get_all();
+        var_dump($events);
+        header('Content-Type: application/json');
+        echo json_encode($events); 
     }
 
     public function index() {
@@ -27,7 +38,7 @@ class Rendezvous_Controller extends CI_Controller {
         $this->load->view('templates/header.php');
         $data['detail_rendezvous'] = $this->Rendezvous_model->get_detail_rendezvous($idr);
         $this->load->view('rendezvous/detail_rendezvous.php',$data);
-        $this->load->view('templates/footer.php');
+        $this->load->view('templates/footer.php');8
     }
 
 }
