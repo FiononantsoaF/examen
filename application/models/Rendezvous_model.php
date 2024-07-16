@@ -11,7 +11,8 @@ class Rendezvous_model extends CI_Model
 
 	public function get_all()
 	{
-		return $this->db->get('finals4_view_detail_rendez_vous')->result_array();
+        $query = $this->db->get('finals4_view_detail_rendez_vous');
+        return $query->result(); 
 	}
 
 	public function get_rendezvousbyclient($client_id)

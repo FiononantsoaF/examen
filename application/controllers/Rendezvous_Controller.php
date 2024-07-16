@@ -9,6 +9,17 @@ class Rendezvous_Controller extends CI_Controller {
         $this->load->library('session');
     }
 
+    public function calendar() {
+        $this->load->view('calendar/calendar.php');
+    } 
+
+    public function get_all() {
+        $events = $this->Rendezvous_model->get_all();
+        var_dump($events);
+        header('Content-Type: application/json');
+        echo json_encode($events); 
+    }
+
     public function index() {
         $this->load->view('templates/header.php');
         $this->load->view('rendezvous/rendezvous.php');

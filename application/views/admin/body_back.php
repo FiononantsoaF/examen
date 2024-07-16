@@ -9,7 +9,7 @@
     <div class="entete">
         <ul class="content_link">
             <li role="presentation"><a href="#">Service</a></li>
-            <li role="presentation"><a href="#">Calendrier</a></li>
+            <li role="presentation"><a href="<?php  echo site_url("Rendezvous_Controller/calendar") ;?>">Calendrier</a></li>
             <li role="presentation"><a href="#">Devis</a></li>
         </ul>
     </div>
