@@ -80,8 +80,7 @@ class Rendezvous_model extends CI_Model
 			"rendez_vous" => $last_id,
 			"effectue" => 0,
 			"prix" => $prix,
-			"payment" => '',
-			"paye" => 0
+			"payement" => ''
 		);
 		return $data;
 	}

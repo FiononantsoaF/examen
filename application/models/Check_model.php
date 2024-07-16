@@ -42,12 +42,4 @@ class Check_model extends CI_Model
 		return false;
 	}
 
-
-	public function get_free_slots_for_service($service_id)
-	{
-		$this->load->model("Admin_model");
-		$service = $this->Admin_model->get_service_by_id($service_id);
-		return $this->get_free_slots($service['duree']);
-	}
-
 }
