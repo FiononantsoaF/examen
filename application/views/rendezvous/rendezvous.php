@@ -25,6 +25,8 @@
             <p>Slot : A</p>
             <input type="submit" class="bouton_1" value="Confirmer">
     </form> 
+    <a href="<?php echo site_url('Rendezvous_Controller/liste_rendezvous'); ?>">liste de mes rendez vous</a>
+
 </div>       
 
         

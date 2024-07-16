@@ -5,7 +5,8 @@ class Client_Controller extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('Client_model');  // Assurez-vous de charger le modèle ici
+        $this->load->model('Client_model'); 
+        $this->load->library('session');
     }
 
     public function index() {
@@ -21,7 +22,10 @@ class Client_Controller extends CI_Controller {
 			$client = $this->Client_model->get_finals4_client_bymatricule($matricule);
 			if(empty($client)) {
 				$result = $this->Client_model->enregistrer_client($matricule, $type_car);
+                $client = $this->Client_model->get_finals4_client_bymatricule($matricule);
 			}
+            $this->session->set_userdata('client_id', $client[0]['id']);
+            $client_id = $this->session->userdata('client_id');
 			redirect('Rendezvous_Controller');	               
         } else {
             $data['error'] = "Les champs Matricule et Type de véhicule sont obligatoires.";
