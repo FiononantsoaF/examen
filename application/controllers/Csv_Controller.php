@@ -12,15 +12,36 @@ class Csv_controller extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('');
+		$this->load->view('templates/header.php');
+		$this->load->view('importation/import_donnee.php');
+		$this->load->view('templates/footer.php');
 	}
 
 	public function get_content()
 	{
-		$csv = $_FILES['csv_file']['tmp_name'];
-		$data = $this->from_csv_file($csv);
+		$service_name = $_FILES['service']['tmp_name'];
+		$work_name = $_FILES['travaux']['tmp_name'];
+		$data_serv = $this->from_csv_file($service_name);
+		$data_trav = $this->from_csv_file($work_name);
 		//row should have same structure as database
-		var_dump($data);
+		$data['services'] = $this->format_to_db_parseable($data_serv);
+		$data['works'] = $this->format_to_db_parseable($data_trav);
+
+		$this->load->view('templates/header.php');
+		$this->load->view('importation/data_csv.php' , $data);
+		$this->load->view('templates/footer.php');
+	}
+
+	public function confirm_save(){
+		// Get the JSON string from the hidden input
+		$services_json = $this->input->post('services');
+		$works_json = $this->input->post('works');
+
+		// Decode the JSON string back into an array
+		$services = json_decode($services_json, true);
+		$works = json_decode($works_json, true);
+
+		var_dump($works); // For demonstration purposes
 	}
 
 	function from_csv_file($filename)

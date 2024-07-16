@@ -1,5 +1,3 @@
-drop database db_infop16a_ETU002740;
-create database db_infop16a_ETU002740;
 use db_infop16a_ETU002740;
 create table reference(reference_date date);
 insert into reference
