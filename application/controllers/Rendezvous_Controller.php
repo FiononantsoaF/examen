@@ -18,7 +18,6 @@ class Rendezvous_Controller extends CI_Controller {
     public function liste_rendezvous() {
         $this->load->view('templates/header.php');
         $client_id = $this->session->userdata('client_id');
-        print_r($client_id);
         $data['list_rendezvous'] = $this->Rendezvous_model->get_rendezvousbyclient($client_id);
         $this->load->view('rendezvous/liste_rendezvous.php',$data);
         $this->load->view('templates/footer.php');
@@ -30,6 +29,5 @@ class Rendezvous_Controller extends CI_Controller {
         $this->load->view('rendezvous/detail_rendezvous.php',$data);
         $this->load->view('templates/footer.php');
     }
-
 
 }
