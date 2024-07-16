@@ -87,7 +87,7 @@ class Rendezvous_Controller extends CI_Controller {
         $entree_date = $this->input->post('date_debut');
         $entree_time = $this->input->post('time');
         $data['okey'] = $this->Rendezvous_model->save_rendez_vous_to_database($client, $service_id, $id_slot, $entree_date, $entree_time);
-
+        
     }
     
 
