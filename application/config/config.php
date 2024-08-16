@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/examen/';
+$config['base_url'] = '/ETU002740/t/examen/';
 
 $config['fpdf_path'] = APPPATH . 'third_party/fpdf/';
 

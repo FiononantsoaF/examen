@@ -1,9 +1,11 @@
-<head>
+<s>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
+	 <script src="<?php echo base_url('assets/js/index.global.min.j'); ?>"></script>
+	 <link rel="shortcut icon" href="<?php echo base_url('assets/img/Logo.jpg'); ?>" type="image/x-icon">
 </head>
 <body>
     <div class="entete">
@@ -15,6 +17,17 @@
             <li role="presentation"><a href="<?php  echo site_url("Rendezvous_Controller/calendar") ;?>">Dashboard</a></li>
         </ul>
     </div>
+	 <div class="reinitialise_div">
+            <table>
+                <tr>
+                    <td>
+                        <a href="<?php echo site_url("Csv_Controller/");?>" >
+                            <input type="submit" value="Importer" class="bouton_safe">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
     <div>
         <div class="contenu">
             <h3>New  service :</h3>

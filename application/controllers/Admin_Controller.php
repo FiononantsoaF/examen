@@ -77,6 +77,5 @@ class Admin_Controller extends CI_Controller {
         $this->load->view('admin/acceuil', $data);
     }
 
-    //devis
-    
+	
 }

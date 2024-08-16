@@ -21,4 +21,20 @@
             <li role="presentation"><a href="#">Disabled link</a></li>
         </ul>
     </div>
+	 <div class="reinitialise_div">
+            <table>
+                <tr>
+                    <td>
+                        <a href="<?php echo site_url("Csv_controller/") ?>" >
+                            <input type="submit" value="Importer" class="bouton_safe">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" >
+                            <input type="submit" value="Reinitialiser" class="bouton_rouge">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
    
