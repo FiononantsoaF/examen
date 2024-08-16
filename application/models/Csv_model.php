@@ -1,36 +1,53 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Csv_model extends CI_Model {
+class Csv_model extends CI_Model
+{
 
-    public function __construct() {
-        parent::__construct();
-        $this->load->helper('file'); // Load file helper
-    }
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->helper('file'); // Load file helper
+	}
 
-    public function read_csv($file_path) {
-        // Check if the file exists
-        if (!file_exists($file_path)) {
-            return false; // File not found
-        }
+	public function save_to_temp($services, $works)
+	{
+		$this->db->empty_table('service_temp');
+		$this->db->empty_table('trav_temp');
+		for ($i=0; $i < count($services); $i++) { 
+			$serv_data = array(
+				'serv' => $services[$i]['service'],  // Adjust the indexes according to the structure of your csv file
+				'duree' => $services[$i]['duree']
+		  );
+		  $this->db->insert('service_temp', $serv_data);
+		}
 
-        // Read the CSV file
-        $csv_data = file_get_contents($file_path); // Use file_get_contents instead of read_file
+		foreach ($works as $key => $value) {
+			$work_data = array(
+				"voiture"=> $value['voiture'],
+				"type_voiture"=> $value['type voiture'],
+				"date_rdv"=> date('Y-m-d', strtotime($value['date rdv'])),
+				"heure_rdv"=> strtotime($value['heure rdv']),
+				"type_service"=>$value['type service'],
+				"montant"=> $value['montant'],
+				"date_paiement"=>date('Y-m-d', strtotime($value['date paiement']))
+			);
 
-        // Parse CSV data using custom function or PHP functions
-        $parsed_data = $this->parse_csv_data($csv_data); // Call local method for parsing
+			$this->db->insert('trav_temp', $work_data);
+		}
+	}
 
-        return $parsed_data;
-    }
+	public function save_to_database(){
+		$this->db->query("INSERT INTO finals4_services (nom, prix, duree) SELECT s.serv AS nom,t.montant AS prix, s.duree FROM service_temp s JOIN trav_temp t ON s.serv = t.type_service WHERE t.montant = (SELECT MAX(t2.montant) FROM trav_temp t2 WHERE t2.type_service = s.serv);");
 
-    private function parse_csv_data($csv_data) {
-        $lines = explode("\n", $csv_data);
-        $result = [];
+		$this->db->query("insert into finals4_voiture (nom) select distinct type_voiture from trav_temp");
 
-        foreach ($lines as $line) {
-            $result[] = str_getcsv($line);
-        }
+		$this->db->query("insert into finals4_clients (matricule,voiture ) select distinct trav_temp.voiture , finals4_voiture.id from trav_temp join finals4_voiture on finals4_voiture.nom=trav_temp.type_voiture");
+	}
 
-        return $result;
-    }
+	public function save($services, $works){
+		$this->save_to_temp($services, $works);
+		$this->save_to_database();
+		
+	}
 }

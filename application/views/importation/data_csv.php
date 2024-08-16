@@ -35,13 +35,14 @@
 			</td>
 			<td>
 				<div class="form-group">
-					<form action="<?php echo site_url("Csv_Controller/confirm_save") ?>" method="post"  enctype="multipart/form-data">
+					<form action="<?php echo site_url("Csv_Controller/confirm_save") ?>" method="post"
+						enctype="multipart/form-data">
 						<?php
-							$services_json = json_encode($services);
-							$works_json = json_encode($works);
+						$services_json = json_encode($services);
+						$works_json = json_encode($works);
 						?>
-						<input type="hidden" value='<?php echo $services_json; ?>' name="services">
-						<input type="hidden" value="<?php echo $works_json; ?>" name="works">
+						<input type="hidden" value='<?php echo htmlspecialchars($services_json); ?>' name="services">
+						<input type="hidden" value="<?php echo htmlspecialchars($works_json); ?>" name="works">
 						<input type="submit" class="bouton_1" value="Importer">
 					</form>
 				</div>

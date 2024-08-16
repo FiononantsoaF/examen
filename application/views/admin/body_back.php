@@ -17,6 +17,17 @@
             <li role="presentation"><a href="<?php  echo site_url("Rendezvous_Controller/calendar") ;?>">Dashboard</a></li>
         </ul>
     </div>
+	 <div class="reinitialise_div">
+            <table>
+                <tr>
+                    <td>
+                        <a href="<?php echo site_url("Csv_Controller/");?>" >
+                            <input type="submit" value="Importer" class="bouton_safe">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
     <div>
         <div class="contenu">
             <h3>New  service :</h3>

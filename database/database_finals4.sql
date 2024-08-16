@@ -1,30 +1,35 @@
 use db_infop16a_ETU002740;
+
 create table reference(reference_date date);
-insert into reference
-values ('2024-07-13');
+
+insert into reference values ('2024-07-13');
 create table horaire (ouvrture time, fermeture time) engine = innodb;
-insert into horaire
-values('8:00:00', '18:00:00');
+insert into horaire values('8:00:00', '18:00:00');
+
 create table finals4_slots(
 	id int primary key auto_increment,
 	nom char(1) not null
 ) engine = innodb;
+
 create table finals4_voiture (
 	id int primary key auto_increment,
 	nom varchar(10) not null
 ) engine = innodb;
+
 create table finals4_clients(
 	id int primary key auto_increment,
 	matricule varchar(7) not null,
 	voiture int not null,
 	constraint foreign key(voiture) references finals4_voiture(id)
 ) engine = innodb;
+
 create table finals4_services(
 	id int primary key auto_increment,
 	nom varchar(20) not null,
 	prix int(10) not null,
 	duree time
 ) engine = innodb;
+
 create table finals4_demande_rendez_vous(
 	id int primary key auto_increment,
 	client int,
@@ -32,6 +37,7 @@ create table finals4_demande_rendez_vous(
 	constraint foreign key(client) references finals4_clients(id),
 	constraint foreign key(services) references finals4_services(id)
 ) engine = innodb;
+
 create table finals4_operation_rendez_vous(
 	id int primary key auto_increment,
 	rendez_vous int,
@@ -43,6 +49,7 @@ create table finals4_operation_rendez_vous(
 	constraint foreign key(slot) references finals4_slots(id),
 	constraint foreign key(rendez_vous) references finals4_demande_rendez_vous(id)
 ) engine = innodb;
+
 create table finals4_devis(
 	id int primary key auto_increment,
 	rendez_vous int,
@@ -157,3 +164,70 @@ union
 	NULL , NULL
 FROM finals4_operation_rendez_vous 
 GROUP BY slot order by fotoana_v limit 1);
+
+
+create table service_temp (
+	serv varchar(20),
+	duree time
+);
+
+create table trav_temp(
+	voiture varchar(8),
+	type_voiture varchar(10),
+	date_rdv date,
+	heure_rdv time,
+	type_service varchar(30),
+	montant int,
+	date_paiement date
+);
+
+
+-- Ajouter des données de test pour les tables dans database_finals4.sql
+
+-- Ajout de données pour la table finals4_slots
+INSERT INTO finals4_slots (nom) VALUES ('A'), ('B'), ('C');
+
+-- Ajout de données pour la table finals4_voiture
+INSERT INTO finals4_voiture (nom) VALUES 
+	("4x4"),
+	("petit"),
+	("camion");
+
+-- Ajout de données pour la table finals4_clients
+INSERT INTO finals4_clients (matricule, voiture) VALUES 
+	('1234TBN', 1), 
+	('7654TAS', 2), 
+	('9876TBB', 3), 
+	('3456TAQ', 1);
+
+-- Ajout de données pour la table finals4_services
+INSERT INTO finals4_services (nom, prix, duree) VALUES 
+	('reparation', 500000, 50000), 
+	('check', 150000, 20000), 
+	('vidange', 100000, 30000), 
+	('reparation vip', 800000, 40000);
+
+-- Ajout de données pour la table finals4_demande_rendez_vous
+INSERT INTO finals4_demande_rendez_vous (client, services) VALUES 
+	(1, 1), 
+	(2, 2), 
+	(1, 3), 
+	(3, 4);
+
+-- Ajout de données pour la table finals4_operation_rendez_vous
+INSERT INTO finals4_operation_rendez_vous (rendez_vous, slot, entree_date, entree_time, sortie_date, sortie_time) 
+VALUES (1, 1, '2024-07-13', '09:00:00', '2024-07-13', '14:00:00'),
+       (2, 2, '2024-07-13', '14:30:00', '2024-07-13', '16:30:00'),
+       (3, 1, '2024-07-14', '8:00:00', '2024-07-14', '11:00:00'),
+       (4, 1, '2024-07-14', '15:30:00', '2024-07-14', '17:30:00');
+
+-- Ajout de données pour la table finals4_devis
+INSERT INTO finals4_devis (rendez_vous, prix, payement) 
+	VALUES (1, 500000, '2024-07-21'), 
+			 (2, 150000, '2024-07-19'), 
+			 (3, 100000, '2024-07-24'), 
+			 (4, 800000, '2024-07-29');
+
+-- Ajout de données pour la table finals4_employe
+INSERT INTO finals4_employe (nom, mdp) 
+	VALUES ('Bob', '123456'); 

@@ -41,7 +41,13 @@ class Csv_controller extends CI_Controller
 		$services = json_decode($services_json, true);
 		$works = json_decode($works_json, true);
 
-		var_dump($works); // For demonstration purposes
+		$this->load->model('Csv_model');
+
+		$this->Csv_model->save($services,$works);
+
+		redirect(site_url('Admin_Controller/dashboard'));
+
+		
 	}
 
 	function from_csv_file($filename)
